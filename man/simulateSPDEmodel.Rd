@@ -34,7 +34,7 @@ simulateSPDEmodel(
 
 \item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}.}
 
-\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
+\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method as introduced by Hildebrand, F., only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
 
 \item{numberOfSpatialPoints}{number of equidistant spatial points M in \code{[0,1]}.}
 
