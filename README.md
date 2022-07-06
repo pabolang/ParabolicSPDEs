@@ -31,8 +31,8 @@ theta0 = 0
 theta1 = 1
 theta2 = 1
 sigma = 0.5
-numberSpatialPoints = 10
-numberTemporalPoints = 1000
+numberSpatialPoints = 100
+numberTemporalPoints = 10000
 
 (spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints))
 ```
