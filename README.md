@@ -36,7 +36,7 @@ numberTemporalPoints = 10000
 
 (spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints))
 ```
-The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can be plotted using the function:
+The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can be plotted using the following function:
 ```r
 plotSPDE(spde)
 ```
