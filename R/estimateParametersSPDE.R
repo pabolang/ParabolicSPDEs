@@ -108,7 +108,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
         c1 <- is.na(theta2) || is.na(sigma)
         try(if(c1 && is.na(sigma0_squared)) stop("Either provide theta2 and sigma or sigma0_squared!"))
 
-        res <- lapply(data,function(dat){
+        res <- pbmclapply(data,function(dat){
           spatialPoints <- dim(dat)[2] - 1
           temporalPoints <- dim(dat)[1] - 1
           if(is.na(theta2)){
@@ -148,7 +148,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
           numerator <- -numeratorPart1 + numeratorPart2
           denominator <- sum(yWithoutBounds^2)
           numerator / denominator
-        })
+        },mc.cores = numCores)
         return(unlist(res))
       }
       if(estimationMethod == "both"){
