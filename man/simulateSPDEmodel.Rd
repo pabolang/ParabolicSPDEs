@@ -28,11 +28,11 @@ simulateSPDEmodel(
 
 \item{sigma}{a real number greater than zero which controls the overall noise level of the solution field}
 
-\item{L}{a natural number indicating the replacement bound LM dependent on multiples of \code{M}. Default is \code{L=10}.}
+\item{L}{a natural number indicating the replacement bound LM dependent on multiples of \code{M}. The default is \code{L=10}.}
 
 \item{xi}{initial condition. Default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.}
 
-\item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}.}
+\item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}}
 
 \item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
 
