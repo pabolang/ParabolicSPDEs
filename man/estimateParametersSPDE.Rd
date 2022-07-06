@@ -20,9 +20,9 @@ estimateParametersSPDE(
 
 \item{estimationMethod}{a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose \code{"OracleSigma"} and provide \code{theta1,theta2} respectively.
 If \code{sigma and theta2} are known choose \code{"OracleKappa"} and provide the known parameters \code{sigma, theta2} or directly \code{sigma0_squared}.
-If none of the parameters is known, choose \code{"both"}. No additional information needs to be provided. The M-estimator for both natural parameters by Bibinger and Trabs is given by \code{simulationMethod = "BT_both"}.}
+If none of the parameters are known, choose \code{"both"}. No additional information needs to be provided. The M-estimator for both natural parameters by Bibinger and Trabs is given by \code{simulationMethod = "BT_both"}.}
 
-\item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. Default is 0.05.}
+\item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
 \item{...}{further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.}
 }
@@ -32,7 +32,7 @@ For the method "both" two estimations are returned per data set, namely kappa = 
 See references for details on estimation methods.
 }
 \description{
-Oracle and non-oralce estiamtions for SPDE models. All estimators are consistent and estimates the natrual parameters of the SPDE model. Non-Oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
+Oracle and non-oracle estiamtions for SPDE models. All estimators are consistent and estimate the natural parameters of the SPDE model. Non-oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
 }
 \examples{
 theta0 = 0
@@ -41,11 +41,11 @@ theta2 = 1
 sigma = 0.5
 numberSpatialPoints = 10
 numberTemporalPoints = 1000
-reputations = 10
+repetitions = 10
 
 # Data
 spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
-spde_list <- MCSPDESamples(reputations,theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
+spde_list <- MCSPDESamples(repetitions,theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
 
 # Estimation
 estimateParametersSPDE(spde,estimationMethod = "OracleSigma",theta1=1,theta2=1)

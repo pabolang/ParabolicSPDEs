@@ -24,17 +24,17 @@ simulateSPDEmodel(
 
 \item{theta1}{a real number which controls the curvature of the solution field.}
 
-\item{theta2}{a real number greater than zero which reduces the noise level of param sigma and the curvature effect of param theta1}
+\item{theta2}{a real number greater than zero which reduces the noise level of parameter sigma and the curvature effect of parameter \code{theta1}}
 
 \item{sigma}{a real number greater than zero which controls the overall noise level of the solution field}
 
 \item{L}{a natural number indicating the replacement bound LM dependent on multiples of \code{M}. Default is \code{L=10}.}
 
-\item{xi}{initial condition. Default is \code{xi = 0}. For general initial condition choose method = "cutoff".}
+\item{xi}{initial condition. Default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.}
 
-\item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when method = "cutoff".}
+\item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}.}
 
-\item{method}{either "replacement" (Default) or "cutoff". Note, that the replacement method only allows the initial condition to be zero. For general initial conditions choose "cutoff"-method.}
+\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
 
 \item{numberOfSpatialPoints}{number of equidistant spatial points M in \code{[0,1]}.}
 
@@ -44,7 +44,7 @@ simulateSPDEmodel(
 A numeric \code{NxM} matrix.
 }
 \description{
-Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. The SPDE model is using the Dirichlet boundary condition.
+Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. The SPDE model is using the Dirichlet boundary condition.
 }
 \examples{
 theta0 = 0

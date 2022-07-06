@@ -5,7 +5,7 @@
 \title{Simulates multiple parabolic stochastic partial differential equations in one space dimension using Monte-Carlo repetitions}
 \usage{
 MCSPDESamples(
-  reputations,
+  repetitions,
   theta0,
   theta1,
   theta2,
@@ -21,25 +21,25 @@ MCSPDESamples(
 )
 }
 \arguments{
-\item{reputations}{A natural number giving the number of the Monte-Carlo repetitions.}
+\item{repetitions}{A natural number giving the number of the Monte-Carlo repetitions.}
 
-\item{...}{further arguments see \link{simulateSPDEmodel}.}
+\item{...}{for further arguments see \link{simulateSPDEmodel}.}
 }
 \value{
 A list of numeric \code{NxM} matrices.
 }
 \description{
-Simulate Monte-Carlo samples of a SPDE model in one space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each reputation uses the "replacement"-method by default, see \link{simulateSPDEmodel}.
+Simulate Monte-Carlo samples of a SPDE model in one space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each repetition uses the "replacement"-method by default, see \link{simulateSPDEmodel}.
 }
 \examples{
-reputations = 10
+repetitions = 10
 theta0 = 0
 theta1 = 1
 theta2 = 1
 sigma = 0.5
 numberSpatialPoints = 10
 numberTemporalPoints = 1000
-l <- MCSPDESamples(reputations,theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
+l <- MCSPDESamples(repetitions,theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
 }
 \references{
 Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities,
