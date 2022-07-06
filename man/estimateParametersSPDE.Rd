@@ -18,9 +18,9 @@ estimateParametersSPDE(
 \arguments{
 \item{data}{either a numerical \code{NxM} matrix or a list containing numerical \code{NxM} matrices. \code{N} denotes the temporal and \code{M} the spatial resolution of the grid.}
 
-\item{estimationMethod}{a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose "OracleSigma" and provide \code{theta1,theta2} respectively.
-If \code{sigma and theta2} are known choose "OracleKappa" and provide the known parameters \code{sigma, theta2} or directly \code{sigma0_squared}.
-If none of the parameters is known, choose "both". No additional information needs to be provided. The ML-estimator by Bibinger and Trabs is given by \code{simulationMethod = "BT_both"}.}
+\item{estimationMethod}{a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose \code{"OracleSigma"} and provide \code{theta1,theta2} respectively.
+If \code{sigma and theta2} are known choose \code{"OracleKappa"} and provide the known parameters \code{sigma, theta2} or directly \code{sigma0_squared}.
+If none of the parameters is known, choose \code{"both"}. No additional information needs to be provided. The ML-estimator by Bibinger and Trabs is given by \code{simulationMethod = "BT_both"}.}
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. Default is 0.05.}
 
