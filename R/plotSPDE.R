@@ -24,7 +24,13 @@
 
 
 plotSPDE <- function(spdeData){
-  require(plotly)
+  if (!require("pacman")) {
+    install.packages("pacman")
+    require(pacman)
+  } else {
+    require(pacman)
+  }
+  pacman::p_load(plotly)
   numberSpatialPoints <- dim(spdeData)[2]-1
   numberTemporalPoints <- dim(spdeData)[1]-1
   y <- seq(0,1,1/numberSpatialPoints)

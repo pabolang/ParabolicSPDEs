@@ -82,9 +82,13 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
 
   if(assumtionsTrue){
     if(is.list(data)){
-      require(parallel)
-      require(pbapply)
-      require(pbmcapply)
+      if (!require("pacman")) {
+        install.packages("pacman")
+        require(pacman)
+      } else {
+          require(pacman)
+        }
+      pacman::p_load(parallel, pbapply, pbmcapply)
       numCores <- detectCores() - 1
 
       if(estimationMethod == "OracleSigma"){

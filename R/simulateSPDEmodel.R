@@ -31,9 +31,13 @@
 
 
 simulateSPDEmodel <- function(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints,L=10,xi=function(x){0*x},cutoff = 10000,method = "replacement"){
-  require(parallel)
-  require(pbapply)
-  require(pbmcapply)
+  if (!require("pacman")) {
+    install.packages("pacman")
+    require(pacman)
+  } else {
+    require(pacman)
+  }
+  pacman::p_load(parallel, pbapply, pbmcapply)
   numCores <- detectCores() - 1
 
   try (if(theta2 <= 0) stop("theta2 must be greater 0!"))
