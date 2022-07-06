@@ -4,7 +4,7 @@
 #' @param data either a numerical \code{NxM} matrix or a list containing numerical \code{NxM} matrices. \code{N} denotes the temporal and \code{M} the spatial resolution of the grid.
 #' @param estimationMethod a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose "OracleSigma" and provide \code{theta1,theta2} respectively.
 #' If \code{sigma and theta2} are known choose "OracleKappa" and provide the known parameters \code{sigma, theta2} or directly \code{sigma0_squared}.
-#' If none of the parameters is known, choose "both". No additional information needs to be provided.
+#' If none of the parameters is known, choose "both". No additional information needs to be provided. The ML-estimator by Bibinger and Trabs is given by \code{simulationMethod = "BT_both"}.
 #' @param spatialDelta a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. Default is 0.05.
 #' @param ... further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.
 #' @keywords Parameter Estimation for SPDEs.
@@ -178,6 +178,47 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
         },mc.cores = numCores)
         return(unlist(res))
       }
+      if(estimationMethod == "BT_both"){
+        res <- pbmclapply(data,function(dat){
+          xrep <- dim(dat)[2] - 1
+          y <- seq(0,timeHorizon,1/xrep)
+          delta <- spatialDelta
+          yRange <- y[which(round(y,4) >= round(spatialDelta,4))[1] : (which( round(y,4) > round((timeHorizon - spatialDelta),4))[1]-1 )]
+
+          try (if(delta<0 || delta >= 0.5) stop("delta needs to be greater than 0 and less than 0.5!"))
+
+
+          etaHelp_Z_j <- function(dat,yPoint,y){
+            yIndex <- which(round(y,4)>=round(yPoint,4))[1]
+            datTime <- dat[,yIndex]
+
+            n <- dim(dat)[1]
+            datTime1 <- datTime[-1]
+            datTime2 <- datTime[-n]
+            inc <- datTime1 - datTime2
+
+            return(1/sqrt(n)*sum(inc^2))
+          }
+
+          l <- lapply(yRange, function(yPoint){
+            etaHelp_Z_j(dat,yPoint,y)
+          })
+
+          dat2 <- data.frame(cbind(unlist(l),yRange))
+          est <- tryCatch(expr = {
+            est <- nls(formula = V1 ~ sigma4/sqrt(pi)*exp(-kappa*yRange),start = list(sigma4 = 1.5, kappa = 0.5),data=dat2,control = nls.control(maxiter = 20000,minFactor = 0.000000001,warnOnly = T))
+            coef(est)
+          },
+          error = function(e){
+            c(NA,NA)
+          },
+          warning=function(w){
+            c(NA,NA)
+          })
+          est
+        },mc.cores = numCores)
+      }
+      return(unlist(res))
     }
     else {
       if(estimationMethod == "OracleSigma"){
@@ -262,6 +303,46 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
         names(kappa_hat) <- "kappa"
 
         return(c(sigma_hat_squared,kappa_hat))
+      }
+      if(estimationMethod == "BT_both"){
+        dat <- data
+        xrep <- dim(dat)[2] - 1
+        y <- seq(0,timeHorizon,1/xrep)
+        delta <- spatialDelta
+        yRange <- y[which(round(y,4) >= round(spatialDelta,4))[1] : (which( round(y,4) > round((timeHorizon - spatialDelta),4))[1]-1 )]
+
+        try (if(delta<0 || delta >= 0.5) stop("delta needs to be greater than 0 and less than 0.5!"))
+
+
+        etaHelp_Z_j <- function(dat,yPoint,y){
+          yIndex <- which(round(y,4)>=round(yPoint,4))[1]
+          datTime <- dat[,yIndex]
+
+          n <- dim(dat)[1]
+          datTime1 <- datTime[-1]
+          datTime2 <- datTime[-n]
+          inc <- datTime1 - datTime2
+
+          return(1/sqrt(n)*sum(inc^2))
+        }
+
+        l <- lapply(yRange, function(yPoint){
+          etaHelp_Z_j(dat,yPoint,y)
+        })
+
+        dat2 <- data.frame(cbind(unlist(l),yRange))
+        est <- tryCatch(expr = {
+          est <- nls(formula = V1 ~ sigma4/sqrt(pi)*exp(-kappa*yRange),start = list(sigma4 = 1.5, kappa = 0.5),data=dat2,control = nls.control(maxiter = 20000,minFactor = 0.000000001,warnOnly = T))
+          coef(est)
+        },
+        error = function(e){
+          c(NA,NA)
+        },
+        warning=function(w){
+          c(NA,NA)
+        })
+        return(est)
+
       }
     }
   }
