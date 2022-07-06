@@ -41,6 +41,9 @@ The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can plot 
 plotSPDE(spde)
 ```
 
+<img width="740" alt="spde_plot" src="https://user-images.githubusercontent.com/78961989/177564489-2e790dd0-ba42-47e4-a77b-655ed402ce9e.png">
+
+
 For creating multiple SPDE samples, use the function `MCSPDESamples`. 
 
 This package also includes the function `estimateParametersSPDE` for estimating the parameters of a SPDE model. So far, only parametric estimators under the Assumption $N\geq \sqrt{M}$ has been implemented. For more details on the estimators and the assumptions, see the references below. The function uses  the argument `estimationMethod` which includes an oracle estimation for the parameter $\sigma$ 
