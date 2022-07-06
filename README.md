@@ -41,7 +41,7 @@ The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can plot 
 plotSPDE(spde)
 ```
 
-<img width="740" alt="spde_plot" src="https://user-images.githubusercontent.com/78961989/177564489-2e790dd0-ba42-47e4-a77b-655ed402ce9e.png">
+<img width="709" alt="spde_plot" src="https://user-images.githubusercontent.com/78961989/177564860-d90f651e-763a-41b3-aa10-b3162fb571a2.png">
 
 
 For creating multiple SPDE samples, use the function `MCSPDESamples`. 
@@ -58,16 +58,22 @@ estimateParametersSPDE(spde,estimationMethod = "both")
 This function also supports a list of $N\times M$ matrices and returns the estimated parameters for each matrix respectively. 
 Therefore, it is possible to create for example density plots for estimating the natural parameters of the SPDE:
 ```r
-spde_list <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1,theta2 = 1,sigma = 0.5, numberSpatialPoints = 10, numberTemporalPoints = 1000)
-est <- estimateParametersSPDE(spde_list,estimationMethod = "OracleKappa", theta2=1,sigma=0.5)
+spde_list1 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1,theta2 = 1,sigma = 0.5, numberSpatialPoints = 10, numberTemporalPoints = 1000)
+spde_list2 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1.1,theta2 = 1,sigma = 1, numberSpatialPoints = 10, numberTemporalPoints = 1000)
+est1 <- estimateParametersSPDE(spde_list1,estimationMethod = "OracleKappa", theta2=1,sigma=0.5)
+est2 <- estimateParametersSPDE(spde_list2,estimationMethod = "OracleKappa", theta2=1,sigma=1)
+
 require(ggplot2)
-dat <- data.frame(x=est)
-ggplot(dat,aes(x=x,fill=1))+
+dat <- data.frame(x=c(est1,est2),group=rep(1:2,each=length(est1)))
+ggplot(dat,aes(x=x,fill=group,group=group,color=group))+
   geom_density(alpha=0.4)+
   theme_minimal()+
   labs(x="")+
   theme(legend.position = "none")
 ```
+
+![dens](https://user-images.githubusercontent.com/78961989/177566297-9ae4c448-88fd-43ea-a3bb-21356528ae6a.png)
+
 ---
 
 ## To-Do's
