@@ -51,17 +51,18 @@ and the natural parameter $\kappa=\vartheta_1/\vartheta_2$,
 as well as an estimation for the parameter $(\sigma_0^2,\kappa)$, 
 where $\sigma_0^2=\sigma^2/\sqrt{\vartheta_2}$.
 ```r
-estimateParametersSPDE(spde,estimationMethod = "OracleSigma",theta1=1,theta2=1)
-estimateParametersSPDE(spde,estimationMethod = "OracleKappa",sigma=0.5,theta2=1)
-estimateParametersSPDE(spde,estimationMethod = "both")
+estimateParametersSPDE(spde, estimationMethod = "OracleSigma", theta1=1,theta2 = 1)
+estimateParametersSPDE(spde, estimationMethod = "OracleKappa", sigma=0.5,theta2 = 1)
+estimateParametersSPDE(spde, estimationMethod = "OracleKappa", sigma0_squared = 0.5^2/sqrt(1)))
+estimateParametersSPDE(spde, estimationMethod = "both")
 ```
 This function also supports a list of $N\times M$ matrices and returns the estimated parameters for each matrix respectively. 
 Therefore, it is possible to create for example density plots for estimating the natural parameters of the SPDE:
 ```r
 spde_list1 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1,theta2 = 1,sigma = 0.5, numberSpatialPoints = 10, numberTemporalPoints = 1000)
 spde_list2 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1.1,theta2 = 1,sigma = 1, numberSpatialPoints = 10, numberTemporalPoints = 1000)
-est1 <- estimateParametersSPDE(spde_list1,estimationMethod = "OracleKappa", theta2=1,sigma=0.5)
-est2 <- estimateParametersSPDE(spde_list2,estimationMethod = "OracleKappa", theta2=1,sigma=1)
+est1 <- estimateParametersSPDE(spde_list1, estimationMethod = "OracleKappa", theta2 = 1, sigma= 0.5)
+est2 <- estimateParametersSPDE(spde_list2, estimationMethod = "OracleKappa", theta2 = 1, sigma = 1)
 
 require(ggplot2)
 dat <- data.frame(x=c(est1,est2),group=rep(1:2,each=length(est1)))
