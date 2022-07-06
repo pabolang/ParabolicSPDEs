@@ -36,7 +36,7 @@ numberTemporalPoints = 10000
 
 (spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints))
 ```
-The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can be plotted using the function:
+The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can be plotted using the following function:
 ```r
 plotSPDE(spde)
 ```
@@ -57,7 +57,7 @@ estimateParametersSPDE(spde, estimationMethod = "OracleKappa", sigma0_squared = 
 estimateParametersSPDE(spde, estimationMethod = "both")
 ```
 This function also supports a list of $N\times M$ matrices and returns the estimated parameters for each matrix respectively. 
-Therefore, it is possible to create for example density plots for estimating the natural parameters of the SPDE:
+Therefore, it is possible to create for example density plots for estimating the natural parameters of a SPDE:
 ```r
 spde_list1 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1,theta2 = 1,sigma = 0.5, numberSpatialPoints = 10, numberTemporalPoints = 1000)
 spde_list2 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1.1,theta2 = 1,sigma = 1, numberSpatialPoints = 10, numberTemporalPoints = 1000)
