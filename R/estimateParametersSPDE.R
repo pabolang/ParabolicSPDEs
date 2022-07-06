@@ -179,6 +179,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
         return(unlist(res))
       }
       if(estimationMethod == "BT_both"){
+        timeHorizon <- 1
         res <- pbmclapply(data,function(dat){
           xrep <- dim(dat)[2] - 1
           y <- seq(0,timeHorizon,1/xrep)
@@ -218,7 +219,9 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
           est
         },mc.cores = numCores)
       }
-      return(unlist(res))
+      est <- unlist(res)
+      names(est) <- rep(c("sigma^2_0","kappa"),length(data))
+      return(est)
     }
     else {
       if(estimationMethod == "OracleSigma"){
@@ -306,6 +309,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
       }
       if(estimationMethod == "BT_both"){
         dat <- data
+        timeHorizon <- 1
         xrep <- dim(dat)[2] - 1
         y <- seq(0,timeHorizon,1/xrep)
         delta <- spatialDelta
@@ -341,6 +345,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
         warning=function(w){
           c(NA,NA)
         })
+        names(est) <- c("sigma^2_0","kappa")
         return(est)
 
       }
