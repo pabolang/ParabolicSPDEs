@@ -27,7 +27,7 @@ If none of the parameters is known, choose "both". No additional information nee
 \item{...}{further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.}
 }
 \value{
-a numeric vector. For method "OracleSigma" the returned value denotes the estimation of sigma^2. For method "OracleKappa" the returned value denotes the estimated quotient theta1/theta2.
+a numeric vector or a named numeric vector for estimationMethod="both". For method "OracleSigma" the returned value denotes the estimation of sigma^2. For method "OracleKappa" the returned value denotes the estimated quotient theta1/theta2.
 For the method "both" two estimations are returned per data set, namely kappa = theta1/theta2 and sigma0_squared = sigma^2/(theta2)^(1/2).
 See references for details on estimation methods.
 }

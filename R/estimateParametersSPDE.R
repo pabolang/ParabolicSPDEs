@@ -12,7 +12,7 @@
 #' Bibinger, M. and Trabs, M. (2017) Volatility estimation for stochastic PDEs using high-frequency observations,
 #' Hildebrandt, F. and Trabs M. (2019) Parameter estimation for SPDEs based on discrete observations in time and space.
 #' @export
-#' @return a numeric vector. For method "OracleSigma" the returned value denotes the estimation of sigma^2. For method "OracleKappa" the returned value denotes the estimated quotient theta1/theta2.
+#' @return a numeric vector or a named numeric vector for estimationMethod="both". For method "OracleSigma" the returned value denotes the estimation of sigma^2. For method "OracleKappa" the returned value denotes the estimated quotient theta1/theta2.
 #' For the method "both" two estimations are returned per data set, namely kappa = theta1/theta2 and sigma0_squared = sigma^2/(theta2)^(1/2).
 #' See references for details on estimation methods.
 #' @seealso [ParabolicSPDEs::simulateSPDEmodel], [ParabolicSPDEs::MCSPDESamples].
