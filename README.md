@@ -36,7 +36,7 @@ numberTemporalPoints = 10000
 
 (spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints))
 ```
-The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can plot by the function:
+The function `simulateSPDEmodel` returns a $N\times M$ matrix which we can be plotted using the function:
 ```r
 plotSPDE(spde)
 ```
@@ -46,7 +46,7 @@ plotSPDE(spde)
 
 For creating multiple SPDE samples, use the function `MCSPDESamples`. 
 
-This package also includes the function `estimateParametersSPDE` for estimating the parameters of a SPDE model. So far, only parametric estimators under the Assumption $N\geq \sqrt{M}$ has been implemented. For more details on the estimators and the assumptions, see the references below. The function uses  the argument `estimationMethod` which includes an oracle estimation for the parameter $\sigma$ 
+This package also includes the function `estimateParametersSPDE` for estimating the parameters of a SPDE model. So far, only parametric estimators under the assumption $N\geq \sqrt{M}$ has been implemented. For more details on the estimators and the assumptions, see the references below. The function uses  the argument `estimationMethod` which includes an oracle estimation for the parameter $\sigma$ 
 and the natural parameter $\kappa=\vartheta_1/\vartheta_2$, 
 as well as an estimation for the parameter $(\sigma_0^2,\kappa)$, 
 where $\sigma_0^2=\sigma^2/\sqrt{\vartheta_2}$.
