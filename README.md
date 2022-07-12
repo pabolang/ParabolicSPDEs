@@ -19,7 +19,7 @@ $$ \text{d}X_t(y)=\bigg(\vartheta_2\frac{\partial^2 X_t(y)}{\partial y^2}+\varth
 where $\vartheta_0\in\mathbb{R}, \vartheta_1\in\mathbb{R},\vartheta_2>0,\sigma>0$ 
 and a cylindrical Brownian motion $B_t(y)$ within a Sobolev space 
 on the unit interval $\[0,1\]$. 
-Further, we consider a Dirchilet boundary condition and an initial condition $\xi(y)=0$, 
+Further, we consider a Dirichlet boundary condition and an initial condition $\xi(y)=0$, 
 where $(t,y)\in \[0,1\]^2$.
 
 
