@@ -30,13 +30,7 @@
 
 
 
-kappa.test <- function(data, curvature = 0,
-                       alternative = "two.sided",
-                       conf.level = 0.95,
-                       method = "non-oracle",
-                       spatialDelta = 0.05,
-                       sigma = NA, theta2 = NA, sigma0_squared = NA,
-                       theta1 = NA){
+kappa.test <- function(data, curvature = 0,alternative = "two.sided",conf.level = 0.95,method = "non-oracle",spatialDelta = 0.05, sigma = NA, theta2 = NA, sigma0_squared = NA, theta1 = NA){
   dat <- data
   N <- dim(dat)[1] - 1
   M <- dim(dat)[2] - 1
