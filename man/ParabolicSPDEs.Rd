@@ -10,5 +10,5 @@ ParabolicSPDEs()
 This package includes the simulation of SPDE models, \link{simulateSPDEmodel} and \link{MCSPDESamples}, as well as a quick-plot function \link{plotSPDE} and a function for estimating the natural parameters of the SPDE models \link{estimateParametersSPDE}.
 }
 \seealso{
-\link{simulateSPDEmodel}, \link{MCSPDESamples}, \link{plotSPDE}, \link{estimateParametersSPDE}, \link{kappa.test}.
+\link{simulateSPDEmodel}, \link{MCSPDESamples}, \link{plotSPDE}, \link{estimateParametersSPDE}, \link{kappa_test}.
 }
