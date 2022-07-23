@@ -46,11 +46,11 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
     if(alternative == "g"){
       alternative = "greater"
     }
-    
+
     if(!is.na(theta1) & !is.na(theta2)){
       curvature = theta1/theta2
     }
-    
+
     if(method == "oracle"){
       c1 <- is.na(theta2) || is.na(sigma)
       try(if(c1 && is.na(sigma0_squared)) stop("Either provide theta2 and sigma or sigma0_squared!"))
@@ -60,14 +60,14 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
         sigma0_squared <- sigma^2/sqrt(theta2)
       }
     }
-    
-    
+
+
     Gamma <- GammaSPDE()
-    
+
     y <- seq(0,1,1/M)
     yWithoutBounds <- y[which(round(y,4) >= round(spatialDelta,4))[1] : (which( round(y,4) > round((1 - spatialDelta),4))[1]-1 )]
     m <- length(yWithoutBounds)
-    
+
     if(method == "non-oracle"){
       est1 <- estimateParametersSPDE(data,estimationMethod = "both")
       est <- est1[2]
@@ -92,12 +92,12 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
           }
         }
       }
-      
+      alpha <- 1- conf.level
       v <- 1/u
-      q <- pnorm(1-conf.level/2)
+      q <- pnorm(1-alpha/2)
       ci <- c(est-q*v,est+q*v)
       attr(ci, "conf.level") <- conf.level
-      
+
       names(est) <- names(curvature) <- "Curvature"
       names(val) <- "Lambda"
       sigma0_squared <- est1[1]
@@ -111,8 +111,8 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
                      null.value = curvature,
                      alternative = alternative,
                      method = "Asymptotic Kappa Non-Oracle Test"),class = "htest")
-      
-      
+
+
     } else {
       if(method == "oracle"){
         est <- estimateParametersSPDE(data,sigma0_squared = sigma0_squared,estimationMethod = "OracleKappa")
@@ -135,12 +135,12 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
             }
           }
         }
-        
+        alpha <- 1- conf.level
         v <- 1/u
-        q <- pnorm(1-conf.level/2)
+        q <- pnorm(1-alpha/2)
         ci <- c(est-q*v,est+q*v)
         attr(ci, "conf.level") <- conf.level
-        
+
         names(est) <- names(curvature) <- "Curvature"
         names(val) <- "Upsilon"
         names(sigma0_squared) <- "normalized volatility"
@@ -153,7 +153,7 @@ kappa_test <- function(data, curvature = 0,alternative = "two.sided",conf.level 
                        null.value = curvature,
                        alternative = alternative,
                        method = "Asymptotic Kappa Oracle Test"),class = "htest")
-        
+
       } else {
         print("No valid method. Check spelling or documentation.")
       }
