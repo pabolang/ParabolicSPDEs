@@ -72,15 +72,15 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
     dat <- data[[1]]
     N <- dim(dat)[1] - 1
     M <- dim(dat)[2] - 1
-    assumtionsTrue <- sqrt(N) >= M
+    assumptionsTrue <- sqrt(N) >= M
   } else {
     dat <- data
     N <- dim(dat)[1] - 1
     M <- dim(dat)[2] - 1
-    assumtionsTrue <- sqrt(N) >= M
+    assumptionsTrue <- sqrt(N) >= M
   }
 
-  if(assumtionsTrue){
+  if(assumptionsTrue){
     if(is.list(data)){
       if (!require("pacman")) {
         install.packages("pacman")
@@ -356,6 +356,7 @@ estimateParametersSPDE <- function(data, estimationMethod, spatialDelta = 0.05,t
     }
   }
   else{
+    try(if(assumptionsTrue) stop("Assumptions are violated! Make sure N>=M^2"))
     print("Estimators by Trabs to be done!")
   }
 
