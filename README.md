@@ -1,5 +1,5 @@
 # ParabolicSPDEs
-Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation methods for estimating the natural parameters in this SPDE model.
+Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation and testing methods for estimating and the natural parameters and testing for the curvature parameter in a seccond order parabolic SPDE model.
 
 ## Installation
 
@@ -74,6 +74,23 @@ ggplot(dat,aes(x=x,fill=group,group=group,color=group))+
 ```
 
 ![dens](https://user-images.githubusercontent.com/78961989/177566297-9ae4c448-88fd-43ea-a3bb-21356528ae6a.png)
+
+Use the function `kappa_test` or testing if theres a curvature in random field.
+
+```
+theta0 = 0
+theta1 = 0
+theta2 = 1
+sigma = 0.5
+numberSpatialPoints = 100
+numberTemporalPoints = 10000
+spde <- simulateSPDEmodel(theta0,theta1,theta2,sigma,numberSpatialPoints,numberTemporalPoints)
+
+
+kappa_test(spde,method = "non-oracle",curvature = -1,alternative = "g")
+
+```
+![curvature](https://user-images.githubusercontent.com/78961989/180608713-2fa6ce9d-872d-4657-b997-c69d9b1c0465.png)
 
 ---
 
