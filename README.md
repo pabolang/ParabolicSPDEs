@@ -79,7 +79,7 @@ Use the function `kappa_test` for testing if theres a curvature in random field.
 
 ```
 theta0 = 0
-theta1 = 0
+theta1 = 5
 theta2 = 1
 sigma = 0.5
 numberSpatialPoints = 100
