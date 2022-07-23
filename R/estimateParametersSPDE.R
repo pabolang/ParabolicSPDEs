@@ -15,7 +15,7 @@
 #' @return a numeric vector or a named numeric vector for estimationMethod="both". For method "OracleSigma" the returned value denotes the estimation of sigma^2. For method "OracleKappa" the returned value denotes the estimated quotient theta1/theta2.
 #' For the method "both" two estimations are returned per data set, namely kappa = theta1/theta2 and sigma0_squared = sigma^2/(theta2)^(1/2).
 #' See references for details on estimation methods.
-#' @seealso [ParabolicSPDEs::simulateSPDEmodel], [ParabolicSPDEs::MCSPDESamples], [ParabolicSPDEs::test.kappa].
+#' @seealso [ParabolicSPDEs::simulateSPDEmodel], [ParabolicSPDEs::MCSPDESamples], [ParabolicSPDEs::kappa.test].
 #' @examples
 #' theta0 = 0
 #' theta1 = 1
