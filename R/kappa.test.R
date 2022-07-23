@@ -170,7 +170,6 @@ kappa.test <- function(data, curvature = 0,
   }
 }
 
-kappa.test(spde,method = "oracle",curvature = -1,sigma0_squared = 0.25,alternative = "g")
 
 
 
