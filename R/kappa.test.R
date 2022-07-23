@@ -31,10 +31,10 @@
 
 
 kappa.test <- function(data, curvature = 0,
-                       alternative = "two.sided", 
+                       alternative = "two.sided",
                        conf.level = 0.95,
                        method = "non-oracle",
-                       spatialDelta = 0.05, 
+                       spatialDelta = 0.05,
                        sigma = NA, theta2 = NA, sigma0_squared = NA,
                        theta1 = NA){
   dat <- data
@@ -52,11 +52,11 @@ kappa.test <- function(data, curvature = 0,
     if(alternative == "g"){
       alternative = "greater"
     }
-    
+
     if(!is.na(theta1) & !is.na(theta2)){
       curvature = theta1/theta2
     }
-    
+
     if(method == "oracle"){
       c1 <- is.na(theta2) || is.na(sigma)
       try(if(c1 && is.na(sigma0_squared)) stop("Either provide theta2 and sigma or sigma0_squared!"))
@@ -66,20 +66,21 @@ kappa.test <- function(data, curvature = 0,
         sigma0_squared <- sigma^2/sqrt(theta2)
       }
     }
-    
-    
+
+
     Gamma <- GammaSPDE()
-    
+
     y <- seq(0,1,1/M)
     yWithoutBounds <- y[which(round(y,4) >= round(spatialDelta,4))[1] : (which( round(y,4) > round((1 - spatialDelta),4))[1]-1 )]
     m <- length(yWithoutBounds)
-    
+
     if(method == "non-oracle"){
       est1 <- estimateParametersSPDE(data,estimationMethod = "both")
       est <- est1[2]
       a <- (1-2*spatialDelta)*sum(yWithoutBounds^2)/m
       b <- ((1-2*spatialDelta)*mean(yWithoutBounds))^2/(1-2*spatialDelta)
-      val <- (est-curvature)*sqrt(N*m)/sqrt(Gamma*pi*(1-2*spatialDelta)/(a-b))
+      u <- sqrt(N*m)/sqrt(Gamma*pi*(1-2*spatialDelta)/(a-b))
+      val <- (est-curvature)*u
       if(alternative == "two.sided" ){
         if(val >= 0){
           PVal <- unname(pnorm(-val) + 1-pnorm(val))
@@ -91,30 +92,38 @@ kappa.test <- function(data, curvature = 0,
           PVal <- pnorm(val)
         } else {
           if(alternative == "greater" ){
-            PVal <- 1-pnorm(val) 
+            PVal <- 1-pnorm(val)
           } else {
             print("Invalid alternative!")
           }
         }
       }
+
+      v <- 1/u
+      q <- pnorm(1-conf.level/2)
+      ci <- c(est-q*v,est+q*v)
+      attr(ci, "conf.level") <- conf.level
+
       names(est) <- names(curvature) <- "Curvature"
       names(val) <- "Lambda"
       sigma0_squared <- est1[1]
       names(sigma0_squared) <- "normalized volatility estimate"
       structure(list(statistic = val,
                      data.name = DNAME,
+                     conf.int = ci,
                      parameter = sigma0_squared,
                      p.value = PVal,
                      estimate = est,
                      null.value = curvature,
-                     alternative = alternative, 
+                     alternative = alternative,
                      method = "Asymptotic Kappa Non-Oracle Test"),class = "htest")
-      
-      
+
+
     } else {
       if(method == "oracle"){
         est <- estimateParametersSPDE(data,sigma0_squared = sigma0_squared,estimationMethod = "OracleKappa")
-        val <- sqrt(N*m)*(est-curvature)/sqrt(Gamma*pi/(sum(yWithoutBounds^2)/m))
+        u <- sqrt(N*m)/sqrt(Gamma*pi/(sum(yWithoutBounds^2)/m))
+        val <- (est-curvature)*u
         if(alternative == "two.sided" ){
           if(val >= 0){
             PVal <- unname(pnorm(-val) + 1-pnorm(val))
@@ -126,24 +135,31 @@ kappa.test <- function(data, curvature = 0,
             PVal <- pnorm(val)
           } else {
             if(alternative == "greater" ){
-              PVal <- 1-pnorm(val) 
+              PVal <- 1-pnorm(val)
             } else {
               print("Invalid alternative!")
             }
           }
         }
+
+        v <- 1/u
+        q <- pnorm(1-conf.level/2)
+        ci <- c(est-q*v,est+q*v)
+        attr(ci, "conf.level") <- conf.level
+
         names(est) <- names(curvature) <- "Curvature"
         names(val) <- "Upsilon"
         names(sigma0_squared) <- "normalized volatility"
         structure(list(statistic = val,
                        parameter = sigma0_squared,
                        data.name = DNAME,
+                       conf.int = ci,
                        p.value = PVal,
                        estimate = est,
                        null.value = curvature,
-                       alternative = alternative, 
+                       alternative = alternative,
                        method = "Asymptotic Kappa Oracle Test"),class = "htest")
-        
+
       } else {
         print("No valid method. Check spelling or documentation.")
       }
@@ -153,3 +169,9 @@ kappa.test <- function(data, curvature = 0,
     print("Estimators by Trabs to be done!")
   }
 }
+
+kappa.test(spde,method = "oracle",curvature = -1,sigma0_squared = 0.25,alternative = "g")
+
+
+
+
