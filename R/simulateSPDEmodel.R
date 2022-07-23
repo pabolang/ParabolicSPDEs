@@ -15,7 +15,7 @@
 #' @references Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities,
 #' Hildebrand, F. (2020) On generating fully discrete samples of the stochastic heat equation on an interval.
 #' @export
-#' @seealso [ParabolicSPDEs::MCSPDESamples], [ParabolicSPDEs::plotSPDE],[ParabolicSPDEs::estimateParametersSPDE].
+#' @seealso [ParabolicSPDEs::MCSPDESamples], [ParabolicSPDEs::plotSPDE],[ParabolicSPDEs::estimateParametersSPDE], [ParabolicSPDEs::test.kappa].
 #' @return A numeric \code{NxM} matrix.
 #' @examples
 #' theta0 = 0

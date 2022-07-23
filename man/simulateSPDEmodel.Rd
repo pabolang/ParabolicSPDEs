@@ -60,7 +60,7 @@ Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic
 Hildebrand, F. (2020) On generating fully discrete samples of the stochastic heat equation on an interval.
 }
 \seealso{
-\link{MCSPDESamples}, \link{plotSPDE},\link{estimateParametersSPDE}.
+\link{MCSPDESamples}, \link{plotSPDE},\link{estimateParametersSPDE}, \link{test.kappa}.
 }
 \keyword{SPDE}
 \keyword{Sample}

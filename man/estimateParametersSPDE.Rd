@@ -62,7 +62,7 @@ Bibinger, M. and Trabs, M. (2017) Volatility estimation for stochastic PDEs usin
 Hildebrandt, F. and Trabs M. (2019) Parameter estimation for SPDEs based on discrete observations in time and space.
 }
 \seealso{
-\link{simulateSPDEmodel}, \link{MCSPDESamples}.
+\link{simulateSPDEmodel}, \link{MCSPDESamples}, \link{test.kappa}.
 }
 \keyword{Estimation}
 \keyword{Parameter}
