@@ -77,7 +77,7 @@ ggplot(dat,aes(x=x,fill=group,group=group,color=group))+
 
 Use the function `kappa_test` to test for the curvature in the random field.
 
-```
+```r
 theta0 = 0
 theta1 = 5
 theta2 = 1
