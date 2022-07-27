@@ -75,7 +75,7 @@ ggplot(dat,aes(x=x,fill=group,group=group,color=group))+
 
 ![dens](https://user-images.githubusercontent.com/78961989/177566297-9ae4c448-88fd-43ea-a3bb-21356528ae6a.png)
 
-Use the function `kappa_test` for testing if theres a curvature in random field.
+Use the function `kappa_test` to test for the curvature in the random field.
 
 ```
 theta0 = 0
