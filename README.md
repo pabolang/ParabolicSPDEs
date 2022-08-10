@@ -1,5 +1,5 @@
 # ParabolicSPDEs
-Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation and testing methods for estimating and the natural parameters and testing for the curvature parameter in a seccond order parabolic SPDE model.
+Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation and testing methods for estimating and the natural parameters and testing for the curvature parameter in a second order parabolic SPDE model.
 
 ## Installation
 
@@ -23,7 +23,7 @@ Further, we consider a Dirichlet boundary condition and an initial condition $\x
 where $(t,y)\in \[0,1\]^2$.
 
 
-By using this package, we can simply simulate a SPDE model on a equidistant discrete $N\times M$ grid, 
+By using this package, we can simply simulate a SPDE model on an equidistant discrete $N\times M$ grid, 
 where $N$ denotes the temporal and $M$ the spatial resolution, using the function `simulateSPDEmodel`:
 ```r
 library(ParabolicSPDEs)
@@ -46,7 +46,7 @@ plotSPDE(spde)
 
 For creating multiple SPDE samples, use the function `MCSPDESamples`. 
 
-This package also includes the function `estimateParametersSPDE` for estimating the parameters of a SPDE model. So far, only parametric estimators under the assumption $N\geq \sqrt{M}$ has been implemented. For more details on the estimators and the assumptions, see the references below. The function uses  the argument `estimationMethod` which includes an oracle estimation for the parameter $\sigma$ 
+This package also includes the function `estimateParametersSPDE` for estimating the parameters of a SPDE model. So far, only parametric estimators under the assumption $N\geq \sqrt{M}$ have been implemented. For more details on the estimators and the assumptions, see the references below. The function uses  the argument `estimationMethod` which includes an oracle estimation for the parameter $\sigma$ 
 and the natural parameter $\kappa=\vartheta_1/\vartheta_2$, 
 as well as an estimation for the parameter $(\sigma_0^2,\kappa)$, 
 where $\sigma_0^2=\sigma^2/\sqrt{\vartheta_2}$.
@@ -57,7 +57,7 @@ estimateParametersSPDE(spde, estimationMethod = "OracleKappa", sigma0_squared = 
 estimateParametersSPDE(spde, estimationMethod = "both")
 ```
 This function also supports a list of $N\times M$ matrices and returns the estimated parameters for each matrix respectively. 
-Therefore, it is possible to create for example density plots for estimating the natural parameters of a SPDE:
+Therefore, it is possible to create, e.g. density plots in order to estimate the natural parameters $(\sigma_0^2,\kappa)$ of a SPDE:
 ```r
 spde_list1 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1,theta2 = 1,sigma = 0.5, numberSpatialPoints = 10, numberTemporalPoints = 1000)
 spde_list2 <- MCSPDESamples(reputations = 100,theta0 = 0,theta1 = 1.1,theta2 = 1,sigma = 1, numberSpatialPoints = 10, numberTemporalPoints = 1000)
