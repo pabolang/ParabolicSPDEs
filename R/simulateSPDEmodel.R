@@ -1,6 +1,6 @@
 #' Simulate a parabolic stochastic partial differential equations in one space dimension
 #'
-#' Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. The SPDE model is using the Dirichlet boundary condition.
+#' Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. Furthermore, the SPDE model is using the Dirichlet boundary condition.
 #' @param theta0 a real number which controls the drift of the solution field.
 #' @param theta1 a real number which controls the curvature of the solution field.
 #' @param theta2 a real number greater than zero which reduces the noise level of parameter sigma and the curvature effect of parameter \code{theta1}.
@@ -10,7 +10,7 @@
 #' @param L a natural number indicating the replacement bound LM dependent on multiples of \code{M}. The default is \code{L=10}.
 #' @param xi initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.
 #' @param cutoff a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}.
-#' @param method either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method as introduced by Hildebrand, F., only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.
+#' @param method either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method as introduced by Hildebrand, F., only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.
 #' @keywords Sample of one SPDE
 #' @references Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities,
 #' Hildebrand, F. (2020) On generating fully discrete samples of the stochastic heat equation on an interval.

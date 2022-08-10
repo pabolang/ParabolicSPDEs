@@ -34,7 +34,7 @@ simulateSPDEmodel(
 
 \item{cutoff}{a natural number for the cut-off frequency of the Fourrier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}.}
 
-\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method as introduced by Hildebrand, F., only allows the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
+\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the replacement method as introduced by Hildebrand, F., only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
 
 \item{numberOfSpatialPoints}{number of equidistant spatial points M in \code{[0,1]}.}
 
@@ -44,7 +44,7 @@ simulateSPDEmodel(
 A numeric \code{NxM} matrix.
 }
 \description{
-Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. The SPDE model is using the Dirichlet boundary condition.
+Simulate a sample of a SPDE model in one space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. Furthermore, the SPDE model is using the Dirichlet boundary condition.
 }
 \examples{
 theta0 = 0

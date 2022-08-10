@@ -2,7 +2,7 @@
 % Please edit documentation in R/kappa_test.R
 \name{kappa_test}
 \alias{kappa_test}
-\title{Test for the curvature patameter in a parabolic SPDE model}
+\title{Test for the curvature parameter in a parabolic SPDE model}
 \usage{
 kappa_test(
   data,
@@ -26,14 +26,14 @@ kappa_test(
 
 \item{conf.level}{confidence level for the returned confidence interval.}
 
-\item{method}{a string indicating if a non-orcale or an oracle test is performed. Must either be \code{non-oracle} or \code{oracle}. When \code{orcale} is used, you must specify the normalized voltility by either enter \code{sigma0_squared} or the parameters \code{sigma} and \code{theta2}. Default is \code{non-oracle}.}
+\item{method}{a string indicating if a non-oracle or an oracle test is performed. Must either be \code{non-oracle} or \code{oracle}. When \code{orcale} is used, you must specify the normalized volatility by either enter \code{sigma0_squared} or the parameters \code{sigma} and \code{theta2}. Default is \code{non-oracle}.}
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
-\item{...}{further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.}
+\item{...}{further arguments depending on the chosen estimation method. See \code{method} or the examples below.}
 }
 \description{
-Aymptotic oracle and non-oracle tests for the curvature parameter in SPDE models. Non-oracle curvature tests are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
+Asymptotic oracle and non-oracle tests for the curvature parameter in SPDE models. Non-oracle curvature tests are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
 }
 \examples{
 # Data

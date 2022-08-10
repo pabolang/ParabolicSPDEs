@@ -32,7 +32,7 @@ For the method "both" two estimations are returned per data set, namely kappa = 
 See references for details on estimation methods.
 }
 \description{
-Oracle and non-oracle estiamtions for SPDE models. All estimators are consistent and estimate the natural parameters of the SPDE model. Non-oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
+Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the SPDE model. Non-oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
 }
 \examples{
 theta0 = 0

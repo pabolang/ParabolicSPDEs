@@ -1,6 +1,6 @@
 #' Estimate the parameters of a parabolic SPDE model
 #'
-#' Oracle and non-oracle estiamtions for SPDE models. All estimators are consistent and estimate the natural parameters of the SPDE model. Non-oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
+#' Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the SPDE model. Non-oracle estimations for parabolic SPDEs are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
 #' @param data either a numerical \code{NxM} matrix or a list containing numerical \code{NxM} matrices. \code{N} denotes the temporal and \code{M} the spatial resolution of the grid.
 #' @param estimationMethod a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose \code{"OracleSigma"} and provide \code{theta1,theta2} respectively.
 #' If \code{sigma and theta2} are known choose \code{"OracleKappa"} and provide the known parameters \code{sigma, theta2} or directly \code{sigma0_squared}.

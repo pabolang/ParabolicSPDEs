@@ -1,13 +1,13 @@
-#' Test for the curvature patameter in a parabolic SPDE model
+#' Test for the curvature parameter in a parabolic SPDE model
 #'
-#' Aymptotic oracle and non-oracle tests for the curvature parameter in SPDE models. Non-oracle curvature tests are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
+#' Asymptotic oracle and non-oracle tests for the curvature parameter in SPDE models. Non-oracle curvature tests are based on a log-linear model, see references Bibinger, M. and Bossert, P. (2022).
 #' @param data a numerical \code{NxM} matrix. \code{N} denotes the temporal and \code{M} the spatial resolution of the grid.
 #' @param curvature hypothesized curvature of the random field. Default is 0 (no curvature). Alternatively you can enter both hypothesized parameters \code{theta1} and \code{theta2}.
 #' @param alternative indicates the alternative hypothesis and must be one of "two.sided", "greater" or "less". You can specify just the initial letter. Default is \code{two.sided}.
 #' @param conf.level confidence level for the returned confidence interval.
-#' @param method a string indicating if a non-orcale or an oracle test is performed. Must either be \code{non-oracle} or \code{oracle}. When \code{orcale} is used, you must specify the normalized voltility by either enter \code{sigma0_squared} or the parameters \code{sigma} and \code{theta2}. Default is \code{non-oracle}.
+#' @param method a string indicating if a non-oracle or an oracle test is performed. Must either be \code{non-oracle} or \code{oracle}. When \code{orcale} is used, you must specify the normalized volatility by either enter \code{sigma0_squared} or the parameters \code{sigma} and \code{theta2}. Default is \code{non-oracle}.
 #' @param spatialDelta a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
-#' @param ... further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.
+#' @param ... further arguments depending on the chosen estimation method. See \code{method} or the examples below.
 #' @keywords Curvature Tests for SPDEs.
 #' @references Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities.
 #' @export
