@@ -1,5 +1,5 @@
 # ParabolicSPDEs
-Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation and testing methods for estimating and the natural parameters and testing for the curvature parameter in a second order parabolic SPDE model.
+Simulate and plot parabolic SPDE models as introduced among others by [Bibinger, M. and Bossert, P. (2022) Efficient parameter estimation for parabolic SPDEs based on a log-linear model for realized volatilities](https://arxiv.org/abs/2207.00357). This R-package also provides estimation and testing methods for estimating and the natural parameters and testing for the curvature parameter in a second-order parabolic SPDE model.
 
 ## Installation
 
